@@ -15,6 +15,7 @@ resource "aws_subnet" "demoPublicSubnet" {
   cidr_block = "10.0.1.0/24"
 
   map_public_ip_on_launch = true
+  availability_zone       = data.aws_availability_zones.demoAvailableAZ.names[0]
 
   tags = {
     "name" = "demoPublicSubnet"
@@ -26,6 +27,7 @@ resource "aws_subnet" "demoPrivateSubnet" {
   cidr_block = "10.0.11.0/24"
 
   map_public_ip_on_launch = false
+  availability_zone       = data.aws_availability_zones.demoAvailableAZ.names[1]
 
   tags = {
     "name" = "demoPrivateSubnet"

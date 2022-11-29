@@ -16,5 +16,5 @@ data "aws_availability_zones" "demoAvailableAZ" {
 }
 
 output "demoAvailableAZ" {
-  value = data.aws_availability_zones.demoAvailableAZ
+  value = data.aws_availability_zones.demoAvailableAZ.names
 }
