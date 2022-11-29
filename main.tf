@@ -14,3 +14,7 @@ provider "aws" {
 data "aws_availability_zones" "demoAvailableAZ" {
   state = "available"
 }
+
+output "demoAvailableAZ" {
+  value = data.aws_availability_zones.demoAvailableAZ
+}
