@@ -36,7 +36,7 @@ resource "aws_acm_certificate_validation" "demoClientVPNValidation" {
 
 resource "aws_security_group" "demoVPNAccessSG" {
   vpc_id = aws_vpc.demoVPC.id
-  Name   = "demoVPNAccessSG"
+  name   = "demoVPNAccessSG"
 
   ingress {
     from_port   = 443
