@@ -9,8 +9,8 @@ resource "aws_acm_certificate" "demoVPNServer" {
 }
 
 resource "aws_acm_certificate" "demoClientVPN" {
-  private_key       = file("~/cert/client.key")
-  certificate_body  = file("~/cert/client.crt")
+  private_key       = file("~/cert/client1.domain.tld.key")
+  certificate_body  = file("~/cert/client1.domain.tld.crt")
   certificate_chain = file("~/cert/ca.crt")
 
   tags = {
@@ -47,7 +47,7 @@ resource "aws_ec2_client_vpn_endpoint" "demoClientVPNEndpoint" {
   server_certificate_arn = aws_acm_certificate.demoClientVPN.arn
   client_cidr_block      = "10.2.0.0/16"
   split_tunnel           = true
-  vpc_id = aws_vpc.demoVPC.id
+  vpc_id                 = aws_vpc.demoVPC.id
   security_group_ids     = [aws_security_group.demoVPNAccessSG.id]
 
   authentication_options {
