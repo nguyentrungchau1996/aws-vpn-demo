@@ -8,14 +8,6 @@ resource "aws_acm_certificate" "demoVPNServer" {
   }
 }
 
-resource "aws_acm_certificate_validation" "demoVPNServerValidation" {
-  certificate_arn = aws_acm_certificate.demoVPNServer.arn
-
-  timeouts {
-    create = "1m"
-  }
-}
-
 resource "aws_acm_certificate" "demoClientVPN" {
   private_key       = file("~/cert/client.key")
   certificate_body  = file("~/cert/client.crt")
@@ -23,14 +15,6 @@ resource "aws_acm_certificate" "demoClientVPN" {
 
   tags = {
     "Name" = "demoClientVPN"
-  }
-}
-
-resource "aws_acm_certificate_validation" "demoClientVPNValidation" {
-  certificate_arn = aws_acm_certificate.demoClientVPN.arn
-
-  timeouts {
-    create = "1m"
   }
 }
 
