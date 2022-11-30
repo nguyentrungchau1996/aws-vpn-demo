@@ -6,7 +6,7 @@ resource "aws_vpc" "demoVPC" {
   instance_tenancy     = "default"
 
   tags = {
-    "name" = "demoVPC"
+    "Name" = "demoVPC"
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_subnet" "demoPublicSubnet" {
   availability_zone       = data.aws_availability_zones.demoAvailableAZ.names[0]
 
   tags = {
-    "name" = "demoPublicSubnet"
+    "Name" = "demoPublicSubnet"
   }
 }
 
@@ -30,7 +30,7 @@ resource "aws_subnet" "demoPrivateSubnet" {
   availability_zone       = data.aws_availability_zones.demoAvailableAZ.names[1]
 
   tags = {
-    "name" = "demoPrivateSubnet"
+    "Name" = "demoPrivateSubnet"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_internet_gateway" "demoIG" {
   vpc_id = aws_vpc.demoVPC.id
 
   tags = {
-    "name" = "demoIG"
+    "Name" = "demoIG"
   }
 }
 
@@ -51,11 +51,26 @@ resource "aws_route_table" "demoRT" {
   }
 
   tags = {
-    "name" = "demoRT"
+    "Name" = "demoRT"
   }
 }
 
 resource "aws_route_table_association" "demoRTAssociation" {
   route_table_id = aws_route_table.demoRT.id
   subnet_id      = aws_subnet.demoPublicSubnet.id
+}
+
+resource "aws_default_security_group" "demoDefaultSG" {
+  vpc_id = aws_vpc.demoVPC.id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    "Name" = "demoDefaultSG"
+  }
 }
