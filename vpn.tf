@@ -47,6 +47,7 @@ resource "aws_ec2_client_vpn_endpoint" "demoClientVPNEndpoint" {
   server_certificate_arn = aws_acm_certificate.demoClientVPN.arn
   client_cidr_block      = "10.2.0.0/16"
   split_tunnel           = true
+  vpc_id = aws_vpc.demoVPC.id
   security_group_ids     = [aws_security_group.demoVPNAccessSG.id]
 
   authentication_options {
