@@ -49,6 +49,7 @@ resource "aws_ec2_client_vpn_endpoint" "demoClientVPNEndpoint" {
   split_tunnel           = true
   vpc_id                 = aws_vpc.demoVPC.id
   security_group_ids     = [aws_security_group.demoVPNAccessSG.id]
+  dns_servers            = ["10.0.0.2"]
 
   authentication_options {
     type                       = "certificate-authentication"
