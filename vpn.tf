@@ -1,7 +1,7 @@
 resource "aws_acm_certificate" "demoVPNServer" {
-  private_key       = file("~/cert/server.key")
-  certificate_body  = file("~/cert/server.crt")
-  certificate_chain = file("~/cert/ca.crt")
+  private_key       = file("~/custom_folder/server.key")
+  certificate_body  = file("~/custom_folder/server.crt")
+  certificate_chain = file("~/custom_folder/ca.crt")
 
   tags = {
     "Name" = "demoVPNServer"
@@ -9,9 +9,9 @@ resource "aws_acm_certificate" "demoVPNServer" {
 }
 
 resource "aws_acm_certificate" "demoClientVPN" {
-  private_key       = file("~/cert/client1.domain.tld.key")
-  certificate_body  = file("~/cert/client1.domain.tld.crt")
-  certificate_chain = file("~/cert/ca.crt")
+  private_key       = file("~/custom_folder/client1.domain.tld.key")
+  certificate_body  = file("~/custom_folder/client1.domain.tld.crt")
+  certificate_chain = file("~/custom_folder/ca.crt")
 
   tags = {
     "Name" = "demoClientVPN"
